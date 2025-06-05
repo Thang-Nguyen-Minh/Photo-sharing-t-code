@@ -1,5 +1,5 @@
-const Photo = require('../model/photoModel');
-const User = require ('../model/userModel');
+const Photo = require('../models/photoModel');
+const User = require ('../models/userModel');
 const getPhotoById = async (req, res) => {
     const photos=await Photo.find({user_id:req.params.id}).lean().exec();
     for (const photo of photos){

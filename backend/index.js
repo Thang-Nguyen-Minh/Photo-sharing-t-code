@@ -7,7 +7,7 @@ require("dotenv").config();
 const dbConnect = require("./db/dbConnect");
 const UserRouter = require("./routes/userRoute");
 const PhotoRouter = require("./routes/photoRoute");
-// const AuthRouter = require("./routes/AuthRoute");
+const AuthRouter = require("./routes/authRoute");
 // const NewPhotoRouter = require("./routes/NewPhotoRoute");
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -23,7 +23,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// Session middleware setup (MUST be before routes)
+// Session middlewares setup (MUST be before routes)
 app.use(
     session({
         secret: "your_secret_key",
@@ -40,7 +40,7 @@ app.use(
 app.use("/images", express.static(path.join(__dirname+"/images")))
 
 // Route Mounting - versioned under /api
-// app.use("/admin", AuthRouter);
+app.use("/admin", AuthRouter);
 app.use("/user", UserRouter);
 app.use("/photo", PhotoRouter);
 // app.use("/api/photos", NewPhotoRouter)

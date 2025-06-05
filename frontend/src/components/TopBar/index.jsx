@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography,Button } from "@mui/material";
 import { useLocation } from "react-router-dom";
 import "./styles.css";
 import models from "../../modelData/models";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
+
 function TopBar() {
     const [contextText, setContextText] = useState("");
+    const [user,setUser] = useState([]);
     const location = useLocation();
     const path=location.pathname;
     const x=path.split("/");
@@ -26,16 +29,32 @@ function TopBar() {
         }
         fetchData();
     },[location]);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem("accessToken");  // Xóa token
+        setUser(null);                           // Reset user info
+        navigate("/");                           // Redirect về login
+    };
 
     return (
-        <AppBar className="topbar-appBar" position="absolute">
+        <AppBar position="static" color="primary">
             <Toolbar>
-                <Typography variant="h5" color="inherit">
-                    Photo Sharing App
+                <Typography variant="h6" sx={{ flexGrow: 1 }}>
+                    PhotoSharing App
                 </Typography>
-                <Typography variant="h5" color="inherit" style={{ marginLeft: "auto" }}>
-                    {contextText}
-                </Typography>
+                {user ? (
+                    <>
+                        <Typography variant="body1" sx={{ marginRight: 2 }}>
+                            Hi {user.first_name}
+                        </Typography>
+                        <Button color="inherit" onClick={handleLogout}>
+                            Logout
+                        </Button>
+                    </>
+                ) : (
+                    <Typography variant="body1">Please login</Typography>
+                )}
             </Toolbar>
         </AppBar>
     );

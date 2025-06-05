@@ -1,5 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const {getPhotoById} = require( "../controllers/photoController");
-router.get('/photosOfUser/:id',getPhotoById);
+const verifyToken=require("../middlewares/auth");
+router.get('/photosOfUser/:id',verifyToken,getPhotoById);
+
 module.exports=router;

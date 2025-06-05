@@ -17,6 +17,7 @@ function UserPhotos () {
         }
         fetchData();
     },[photos])
+
     return (
         <div>
             {photos.map(photo => {
