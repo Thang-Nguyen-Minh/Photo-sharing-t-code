@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Card, CardContent, Button } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
 function UserDetail() {
     const { userId } = useParams();
     const [user, setUser] = useState(null); // ✅ sửa từ [] -> null
     const [error, setError] = useState(null);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchUser = async () => {
             const token = localStorage.getItem("accessToken");
-
+            if (!token) {
+                navigate("/"); // ⛔ Chưa đăng nhập thì điều hướng về login
+                return;
+            }
             try {
                 const res = await axios.get(`http://localhost:8080/user/${userId}`,{
                     headers: {

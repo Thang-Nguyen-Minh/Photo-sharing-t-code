@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography, Button } from "@mui/material";
-import { useParams, Link } from "react-router-dom";
+import {useParams, Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import AddCommentBox from "./addComment";
 
 function UserPhotos() {
     const { userId } = useParams();
     const [photos, setPhotos] = useState([]);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem("accessToken");
+            if (!token) {
+                navigate("/"); // ⛔ Chưa đăng nhập thì điều hướng về login
+                return;
+            }
             try {
                 const res = await axios.get(`http://localhost:8080/photo/photosOfUser/${userId}`, {
                     headers: {
