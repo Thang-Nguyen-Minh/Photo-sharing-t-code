@@ -12,7 +12,7 @@ function TopBar() {
                     Photo Sharing App
                 </Typography>
                 <Typography variant="h5" color="inherit" style={{ marginLeft: "auto" }}>
-                    {contextText}
+                    {/*{contextText}*/}
                 </Typography>
             </Toolbar>
         </AppBar>
