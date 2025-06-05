@@ -3,8 +3,15 @@ import {Divider, List, ListItem, ListItemText, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
 import "./styles.css";
 import models from "../../modelData/models";
+import axios from "axios";
 function UserList () {
-    const users = models.userListModel();
+    //const users = models.userListModel();
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:8080/user/list`)
+            .then(res => setUsers(res.data))
+            .catch(err => console.log(err));
+    },[users]);
     return (
       <div>
           <Typography variant="body1">User List</Typography>

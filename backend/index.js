@@ -5,8 +5,8 @@ const path = require('path');
 require("dotenv").config();
 
 const dbConnect = require("./db/dbConnect");
-// const UserRouter = require("./routes/UserRoute");
-// const PhotoRouter = require("./routes/PhotoRoute");
+const UserRouter = require("./routes/userRoute");
+const PhotoRouter = require("./routes/photoRoute");
 // const AuthRouter = require("./routes/AuthRoute");
 // const NewPhotoRouter = require("./routes/NewPhotoRoute");
 const app = express();
@@ -41,8 +41,8 @@ app.use("/images", express.static(path.join(__dirname+"/images")))
 
 // Route Mounting - versioned under /api
 // app.use("/admin", AuthRouter);
-// app.use("/api/user", UserRouter);
-// app.use("/api/photo", PhotoRouter);
+app.use("/user", UserRouter);
+app.use("/photo", PhotoRouter);
 // app.use("/api/photos", NewPhotoRouter)
 // Base test route
 app.get("/", (req, res) => {

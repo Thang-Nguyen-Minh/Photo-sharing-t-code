@@ -3,10 +3,17 @@ import {Card, CardContent, ListItem, Typography,Button} from "@mui/material";
 import "./styles.css";
 import {useParams,Link} from "react-router-dom";
 import models from "../../modelData/models";
+import axios from "axios";
 
 function UserPhotos () {
     const {userId} = useParams();
-    const photos = models.photoOfUserModel(userId);
+    //const photos = models.photoOfUserModel(userId);
+    const [photos, setPhotos] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:8080/photo/photoOfUser/${userId}`)
+        .then(res => setPhotos(res.data))
+        .catch(err => console.log(err));
+    },[photos])
     return (
         <div>
             {photos.map(photo => {

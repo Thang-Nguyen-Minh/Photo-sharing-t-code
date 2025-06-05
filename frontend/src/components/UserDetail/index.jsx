@@ -4,10 +4,17 @@ import "./styles.css";
 import {Link, useParams} from "react-router-dom";
 import UserList from "../UserList";
 import models from "../../modelData/models";
-
+import axios from "axios";
 function UserDetail() {
     const {userId} = useParams();
-    const users = models.userModel(userId);
+    //const users = models.userModel(userId);
+    const [users, setUsers] = useState({});
+    useEffect(() => {
+        axios.get(`http://localhost:8080/user/${userId}`)
+        .then(res => setUsers(res.data))
+        .catch(err => console.log(err));
+    },[userId])
+
     return (
         <div>
             <Card>
