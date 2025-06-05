@@ -8,10 +8,13 @@ function UserList () {
     //const users = models.userListModel();
     const [users, setUsers] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:8080/user/list`)
-            .then(res => setUsers(res.data))
-            .catch(err => console.log(err));
-    },[users]);
+        const fetchData = async () => {
+            await axios.get(`http://localhost:8080/user/list`)
+                .then(res => setUsers(res.data))
+                .catch(err => console.log(err));
+        }
+        fetchData();
+    },[]);
     return (
       <div>
           <Typography variant="body1">User List</Typography>

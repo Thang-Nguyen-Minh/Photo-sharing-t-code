@@ -8,16 +8,23 @@ function TopBar() {
     const [contextText, setContextText] = useState("");
     const location = useLocation();
     const path=location.pathname;
+    const x=path.split("/");
+    const userId=x[2];
 
     useEffect(() => {
-        const x=path.split("/");
-        const id=x[2];
-        if (x[1]==="users" || x[1]==="photos"){
-            const users=models.userModel(id);
-            const name=`${users.first_name} ${users.last_name}`
-            if (x[1]==="photos") setContextText(`Photos of ${name}`);
-            else setContextText(`${name}`);
+        const fetchData = async () => {
+            try{
+                const res= await axios.get(`http://localhost:8080/user/${userId}`);
+                setUser(res.data);
+                const name=`${res.data.first_name} ${res.data.last_name}`;
+                if (x[1]==="photos") setContextText(`Photos of ${name}`);
+                else setContextText(`${name}`);
+            }
+            catch(err){
+                console.log(err);
+            }
         }
+        fetchData();
     },[location]);
 
     return (

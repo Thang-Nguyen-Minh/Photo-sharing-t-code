@@ -10,9 +10,12 @@ function UserPhotos () {
     //const photos = models.photoOfUserModel(userId);
     const [photos, setPhotos] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:8080/photo/photoOfUser/${userId}`)
-        .then(res => setPhotos(res.data))
-        .catch(err => console.log(err));
+        const fetchData = async () => {
+            await axios.get(`http://localhost:8080/photo/photosOfUser/${userId}`)
+                .then(res => setPhotos(res.data))
+                .catch(err => console.log(err));
+        }
+        fetchData();
     },[photos])
     return (
         <div>
