@@ -11,9 +11,18 @@ function UserPhotos () {
     const [photos, setPhotos] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            await axios.get(`http://localhost:8080/photo/photosOfUser/${userId}`)
-                .then(res => setPhotos(res.data))
-                .catch(err => console.log(err));
+            const token = localStorage.getItem("accessToken");
+            try{
+                const res = await axios.get(`http://localhost:8080/photo/photosOfUser/${userId}`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
+                setPhotos(res.data);
+            }
+            catch (error) {
+                console.log(error);
+            }
         }
         fetchData();
     },[photos])

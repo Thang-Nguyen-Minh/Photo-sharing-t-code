@@ -10,8 +10,14 @@ function UserDetail() {
 
     useEffect(() => {
         const fetchUser = async () => {
+            const token = localStorage.getItem("accessToken");
+
             try {
-                const res = await axios.get(`http://localhost:8080/user/${userId}`);
+                const res = await axios.get(`http://localhost:8080/user/${userId}`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
                 if (res.data) {
                     setUser(res.data);
                 } else {

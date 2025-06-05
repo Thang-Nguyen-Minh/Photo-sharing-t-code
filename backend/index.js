@@ -1,5 +1,4 @@
 const express = require('express');
-const session = require("express-session");
 const cors = require('cors');
 const path = require('path');
 require("dotenv").config();
@@ -23,18 +22,6 @@ app.use(cors({
 
 app.use(express.json());
 
-// Session middlewares setup (MUST be before routes)
-app.use(
-    session({
-        secret: "your_secret_key",
-        resave: false,
-        saveUninitialized: false,
-        cookie: {
-            secure: false,
-            httpOnly: true,
-        },
-    })
-);
 
 // Static file serving (if you use image uploads)
 app.use("/images", express.static(path.join(__dirname+"/images")))

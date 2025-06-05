@@ -1,38 +1,46 @@
-import React, {useEffect, useState} from "react";
-import {Divider, List, ListItem, ListItemText, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Divider, List, ListItem, ListItemText, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import "./styles.css";
-import models from "../../modelData/models";
 import axios from "axios";
-function UserList () {
-    //const users = models.userListModel();
+
+function UserList() {
     const [users, setUsers] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
-            await axios.get(`http://localhost:8080/user/list`)
-                .then(res => setUsers(res.data))
-                .catch(err => console.log(err));
-        }
+            const token = localStorage.getItem("accessToken");
+            try {
+                const res = await axios.get("http://localhost:8080/user/list", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                setUsers(res.data);
+            } catch (err) {
+                console.log("❌ Error fetching user list:", err);
+            }
+        };
         fetchData();
-    },[]);
+    }, []);
+
     return (
-      <div>
-          <Typography variant="body1">User List</Typography>
-          <List>
-              {users.map((user)=>{
-                  return (
-                      <>
-                          <ListItem key={user._id}>
-                              <Link to={`/users/${user._id}`}>
-                                  <ListItemText primary={`${user.first_name} ${user.last_name}`}/>
-                              </Link>
-                          </ListItem>
-                          <Divider />
-                      </>
-                  )
-            })}
-          </List>
-      </div>
+        <div>
+            <Typography variant="body1">User List</Typography>
+            <List>
+                {Array.isArray(users) &&
+                    users.map((user) => (
+                        <React.Fragment key={user._id}>
+                            <ListItem>
+                                <Link to={`/users/${user._id}`}>
+                                    <ListItemText primary={`${user.first_name} ${user.last_name}`} />
+                                </Link>
+                            </ListItem>
+                            <Divider />
+                        </React.Fragment>
+                    ))}
+            </List>
+        </div>
     );
 }
 
