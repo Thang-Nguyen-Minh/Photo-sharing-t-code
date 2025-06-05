@@ -10,4 +10,32 @@ const getPhotoById = async (req, res) => {
     }
     return res.status(200).json(photos);
 }
-module.exports={getPhotoById};
+
+const getComment = async (req, res) => {
+    console.log("✅ req.body.comment:", req.body.comment);
+    console.log("✅ req.params.photo_id:", req.params.photo_id);
+    console.log("✅ req.user:", req.user); // hoặc req.userId
+    const {comment} = req.body;
+    const photoId=req.params.photo_id;
+    if (!comment || comment.trim()===""){
+        return res.status(400).json({error:"Comment not found."});
+    }
+    try{
+        const photo=await Photo.findById(photoId);
+        if (!photo){
+            return res.status(404).json({error:"Could not find photo"});
+        }
+        const newComment={
+            comment,
+            user_id: req.user.id,
+            date_time: new Date(),
+        }
+        photo.comments.push(newComment);
+        await photo.save();
+        return res.status(200).json(photo);
+    }
+    catch(err){
+        return res.status(404).json({error:"Could not find photo"});
+    }
+}
+module.exports={getPhotoById,getComment};

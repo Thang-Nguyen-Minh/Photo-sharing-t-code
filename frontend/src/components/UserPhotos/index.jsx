@@ -1,51 +1,71 @@
-import React, {useEffect,useState} from "react";
-import {Card, CardContent, ListItem, Typography,Button} from "@mui/material";
-import "./styles.css";
-import {useParams,Link} from "react-router-dom";
-import models from "../../modelData/models";
+import React, { useEffect, useState } from "react";
+import { Card, CardContent, Typography, Button } from "@mui/material";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import AddCommentBox from "./addComment";
 
-function UserPhotos () {
-    const {userId} = useParams();
-    //const photos = models.photoOfUserModel(userId);
+function UserPhotos() {
+    const { userId } = useParams();
     const [photos, setPhotos] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem("accessToken");
-            try{
-                const res = await axios.get(`http://localhost:8080/photo/photosOfUser/${userId}`,{
+            try {
+                const res = await axios.get(`http://localhost:8080/photo/photosOfUser/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                    }
-                })
+                    },
+                });
                 setPhotos(res.data);
-            }
-            catch (error) {
+            } catch (error) {
                 console.log(error);
             }
-        }
+        };
         fetchData();
-    },[photos])
+    }, [photos,userId]); // ✅ tránh fetch lại vô hạn
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+        };
+        return new Intl.DateTimeFormat("en-US", options).format(date);
+    };
 
     return (
         <div>
-            {photos.map(photo => {
-                return (
-                    <Card>
-                        <img src={`/images/${photo.file_name}`} alt={photo.file_name} />
-                        <Typography>{photo.date_time}</Typography>
-                        {photo.comments && photo.comments.map(comment => (
-                            <div>
+            {photos.map((photo) => (
+                <Card key={photo._id} style={{ marginBottom: 20, padding: 10 }}>
+                    <img
+                        src={`/images/${photo.file_name}`}
+                        alt={photo.file_name}
+                        style={{ maxWidth: "100%", height: "auto" }}
+                    />
+                    <CardContent>
+                    <Typography>Date: {formatDate(photo.date_time)}</Typography>
+
+                    <Typography variant="h6">Comments: <AddCommentBox photoId={photo._id} /></Typography>
+                    {photo.comments && photo.comments.map((comment) => (
+                        <div key={comment._id}>
+                            <Typography variant="body2">
+                                {formatDate(comment.date_time)}
+                            </Typography>
+                            <Typography variant="body1">
                                 <Link to={`/users/${comment.user._id}`}>
-                                    {comment.user.first_name} {comment.user.last_name}
+                                    {`${comment.user.first_name} ${comment.user.last_name}`}
                                 </Link>
-                                <p>{comment.date_time}</p>
-                                <p>{comment.comment}</p>
-                            </div>
-                        ))}
-                    </Card>
-                )
-            })}
+                                : {comment.comment}
+                            </Typography>
+                        </div>
+                    ))}
+                    </CardContent>
+                </Card>
+            ))}
         </div>
     );
 }
