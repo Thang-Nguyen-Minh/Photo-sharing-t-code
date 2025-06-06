@@ -55,7 +55,8 @@ const deletePhoto = async (req, res) => {
             return res.status(404).json({error:"Could not find photo"});
         }
         //photo.user_id khác userId cũng in ra lỗi là chưa đăng nhập
-        if (photo.user_id !== userId){
+        //ĐM phải covert lại về string vì user._id là object, hay lắm thg chó DTĐ
+        if (photo.user_id.toString() !== userId){
             return res.status(404).json({error:"Unauthorized"});
         }
         //Xóa luôn file vật lý trong thư mục(tùy)
@@ -64,8 +65,8 @@ const deletePhoto = async (req, res) => {
             if(err) console.log("Could not delete photo",err.message);
         });
 
-        //Xóa document trong MongDB
-        await photo.findByIdAndDelete(photoId);
+        //Xóa document trong MongDB : th ì phải là thằng Photo vì nó lấy dữ liệu từ model, má code lại thôi cx sai
+        await Photo.findByIdAndDelete(photoId);
         return res.status(200).json({message:"Successfully deleted photo"});
     }
     catch(err){

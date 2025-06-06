@@ -11,6 +11,7 @@ function UserPhotos() {
     const { userId } = useParams();
     const [photos, setPhotos] = useState([]);
     const navigate = useNavigate();
+    //Dùng useContext để lấy ra user
     const { user} = useContext(UserContext);
 
     useEffect(() => {
@@ -51,6 +52,7 @@ function UserPhotos() {
             {photos.map((photo) => (
                 <Card key={photo._id} style={{ marginBottom: 20, padding: 10 }}>
                     <img
+                        //src là đúng luôn cả localhost của backend thì nó mới nhận ảnh
                         src={`http://localhost:8080/images/${photo.file_name}`}
                         alt={photo.file_name}
                         style={{ maxWidth: "100%", height: "450px" }}
@@ -72,13 +74,15 @@ function UserPhotos() {
                             </Typography>
                         </div>
                     ))}
+
                     {user && (
+                        //Truyền 3 tham số vào đúng trong delete photo
+                        //Xóa dùng filter giữ lại tất cả các ảnh có id khác id đã xóa
+                        //VD : setPhotos(1,2,3) => setPhotos(1,3)
                         <DeletePhoto
                             photo={photo}
                             currentUserId={user._id}
-                            onDelete={(id) =>
-                                setPhotos((prev) => prev.filter((p) => p._id !== id))
-                            }
+                            onDelete={(id) => setPhotos(prev => prev.filter(photo => photo._id !== id))}
                         />
                     )}
                     </CardContent>

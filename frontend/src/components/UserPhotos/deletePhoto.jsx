@@ -1,41 +1,45 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 
-function DeletePhoto({ photo, currentUserId, onDelete }) {
-    const navigate = useNavigate();
-
+function DeletePhoto({photo,currentUserId,onDelete}) {
+    //const navigate = useNavigate();
+    //Viết hàm handleDelete
     const handleDelete = async () => {
+        //Hiện thông báo của window, không hiện return luôn
         if (!window.confirm("Are you sure you want to delete this photo?")) return;
-
-        try {
+        //Viết axios như bthg
+        try{
+            const token = localStorage.getItem("accessToken");
+            //Xóa đường dẫn photo khi đã đăng nhập
             await axios.delete(`http://localhost:8080/photo/${photo._id}`, {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-                },
-            });
-            alert("Photo deleted");
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            //Hiện thông báo xóa thành công
+            alert("Successfully deleted photo");
+            //Truyền onDelete vào photo._id
             if (onDelete) onDelete(photo._id);
+            //Có thể chuyển về trang user hoặc không tùy
             //navigate(`/users/${currentUserId}`);
-        } catch (err) {
-            console.error("❌ Delete failed:", err.response?.data || err.message);
         }
-    };
-
-    // ✅ Chỉ render nút nếu đúng chủ sở hữu
-    if (photo.user_id !== currentUserId) return null;
-
-    return (
+        catch (error) {
+            console.log("Delete Failed", error.response?.data || error.message);
+        }
+    }
+    //Chỉ render nếu đúng chủ sở hữu vl chỗ quan trong nhất đéo code
+    if (photo.user_id!==currentUserId) return null;
+    return(
         <Button
             onClick={handleDelete}
             variant="outlined"
             color="error"
-            sx={{ marginTop: 1 }}
+            sx={{marginTop: 1}}
         >
-            Delete Photo
+        DELETE PHOTO
         </Button>
-    );
+    )
 }
-
 export default DeletePhoto;
