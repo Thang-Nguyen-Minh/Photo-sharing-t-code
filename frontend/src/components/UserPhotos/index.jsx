@@ -48,7 +48,7 @@ function UserPhotos() {
                     <img
                         src={`http://localhost:8080/images/${photo.file_name}`}
                         alt={photo.file_name}
-                        style={{ maxWidth: "100%", height: "auto" }}
+                        style={{ maxWidth: "100%", height: "450px" }}
                     />
                     <CardContent>
                     <Typography>Date: {formatDate(photo.date_time)}</Typography>

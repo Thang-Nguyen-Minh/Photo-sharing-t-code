@@ -45,6 +45,9 @@ function TopBar() {
         <AppBar position="static" color="primary">
             <Toolbar className="topbar-toolbar">
                 <div className="topbar-left">
+                    <Typography variant="h5">Nguyễn Minh Thắng</Typography>
+                </div>
+                <div className="topbar-center">
                     {user ? (
                         <>
                             <Typography variant="body1" sx={{ marginRight: 2 }}>
@@ -62,7 +65,7 @@ function TopBar() {
                     )}
                 </div>
                 <div className="topbar-right">
-                    <Typography variant="h6">{contextText}</Typography>
+                    <Typography variant="h5">{contextText}</Typography>
                 </div>
             </Toolbar>
         </AppBar>
