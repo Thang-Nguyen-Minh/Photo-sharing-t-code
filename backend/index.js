@@ -22,8 +22,6 @@ app.use(cors({
 
 app.use(express.json());
 
-
-
 // Static file serving - ĐẢM BẢO truy cập ảnh qua http://localhost:8080/images/filename.jpg
 app.use("/images", express.static(path.join(__dirname, "images")));
 

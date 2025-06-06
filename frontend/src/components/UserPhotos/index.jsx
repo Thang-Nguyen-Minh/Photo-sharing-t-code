@@ -3,11 +3,16 @@ import { Card, CardContent, Typography, Button } from "@mui/material";
 import {useParams, Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import AddCommentBox from "./addComment";
+import DeletePhoto from "./deletePhoto";
+import { useContext } from "react";
+import { UserContext } from "../Context/UseContext";
 
 function UserPhotos() {
     const { userId } = useParams();
     const [photos, setPhotos] = useState([]);
     const navigate = useNavigate();
+    const { user} = useContext(UserContext);
+
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem("accessToken");
@@ -27,7 +32,7 @@ function UserPhotos() {
             }
         };
         fetchData();
-    }, [photos,userId]); // ✅ tránh fetch lại vô hạn
+    }, [photos,userId]);
 
     const formatDate = (dateString) => {
         const date = new Date(dateString);
@@ -67,6 +72,15 @@ function UserPhotos() {
                             </Typography>
                         </div>
                     ))}
+                    {user && (
+                        <DeletePhoto
+                            photo={photo}
+                            currentUserId={user._id}
+                            onDelete={(id) =>
+                                setPhotos((prev) => prev.filter((p) => p._id !== id))
+                            }
+                        />
+                    )}
                     </CardContent>
                 </Card>
             ))}
