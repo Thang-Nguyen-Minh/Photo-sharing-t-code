@@ -18,6 +18,7 @@ const getComment = async (req, res) => {
     console.log("✅ req.params.photo_id:", req.params.photo_id);
     console.log("✅ req.user:", req.user); // hoặc req.userId
     const {comment} = req.body;
+    //do định nghĩa route là /:photo_id
     const photoId=req.params.photo_id;
     if (!comment || comment.trim()===""){
         return res.status(400).json({error:"Comment not found."});
@@ -42,30 +43,32 @@ const getComment = async (req, res) => {
 }
 
 const deletePhoto = async (req, res) => {
-    const photoId = req.params.id;
-    const userId = req.user.id;
-
-    try {
-        const photo = await Photo.findById(photoId);
-        if (!photo) {
-            return res.status(404).json({ error: "Photo not found" });
+    //1. Lấy ra photoId và userId
+    //Do định nghĩa route là /:id
+    const photoId=req.params.id;
+    const userId=req.user.id;
+    //2. Try catch tìm photoId và xóa
+    try{
+        const photo=await Photo.findById(photoId);
+        //Không có photo in ra lỗi
+        if (!photo){
+            return res.status(404).json({error:"Could not find photo"});
         }
-
-        if (photo.user_id.toString() !== userId) {
-            return res.status(403).json({ error: "Unauthorized" });
+        //photo.user_id khác userId cũng in ra lỗi là chưa đăng nhập
+        if (photo.user_id !== userId){
+            return res.status(404).json({error:"Unauthorized"});
         }
-
-        // Xóa file vật lý trong thư mục /images (tuỳ chọn)
-        const imagePath = path.join(__dirname, "../images", photo.file_name);
-        fs.unlink(imagePath, (err) => {
-            if (err) console.log("⚠️ Could not delete file:", err.message);
+        //Xóa luôn file vật lý trong thư mục(tùy)
+        const imagePath=path.join(__dirname,"../images",photo.file_name);
+        fs.unlink(imagePath,(err)=>{
+            if(err) console.log("Could not delete photo",err.message);
         });
 
-        // Xóa document trong MongoDB
-        await Photo.findByIdAndDelete(photoId);
-
-        return res.status(200).json({ message: "Photo deleted successfully" });
-    } catch (err) {
+        //Xóa document trong MongDB
+        await photo.findByIdAndDelete(photoId);
+        return res.status(200).json({message:"Successfully deleted photo"});
+    }
+    catch(err){
         console.error("❌ Error deleting photo:", err);
         return res.status(500).json({ error: "Server error" });
     }
