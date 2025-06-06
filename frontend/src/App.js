@@ -8,7 +8,7 @@ import UserDetail from "./components/UserDetail";
 import UserList from "./components/UserList";
 import UserPhotos from "./components/UserPhotos";
 import LoginRegister from "./components/LoginRegister/LoginRegister";
-
+import UploadPhoto from "./components/TopBar/UploadPhoto";
 import { UserContext } from "./components/Context/UseContext"; // ✅ import context
 
 const App = () => {
@@ -56,6 +56,10 @@ const App = () => {
                                     element={
                                         user ? <UserList /> : <Navigate to="/login" />
                                     }
+                                />
+                                <Route
+                                    path="/upload"
+                                    element={user ? <UploadPhoto userId={user._id} /> : <Navigate to="/login" />}
                                 />
                                 <Route path="*" element={<Navigate to="/login" />} />
                             </Routes>

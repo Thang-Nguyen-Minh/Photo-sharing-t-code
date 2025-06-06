@@ -55,6 +55,11 @@ function TopBar() {
                     ) : (
                         <Button color="inherit" onClick={() => navigate("/login")}>Please Login</Button>
                     )}
+                    {user && (
+                        <Button color="inherit" onClick={() => navigate(`/upload`)}>
+                            Add Photo
+                        </Button>
+                    )}
                 </div>
                 <div className="topbar-right">
                     <Typography variant="h6">{contextText}</Typography>

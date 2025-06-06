@@ -46,7 +46,7 @@ function UserPhotos() {
             {photos.map((photo) => (
                 <Card key={photo._id} style={{ marginBottom: 20, padding: 10 }}>
                     <img
-                        src={`/images/${photo.file_name}`}
+                        src={`http://localhost:8080/images/${photo.file_name}`}
                         alt={photo.file_name}
                         style={{ maxWidth: "100%", height: "auto" }}
                     />

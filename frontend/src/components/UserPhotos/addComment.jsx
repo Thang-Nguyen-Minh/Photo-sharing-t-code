@@ -20,6 +20,7 @@ function AddCommentBox(props) {
                         withCredentials: true
                     }
                 );
+                setComment("");
                 console.log("✅ Comment posted:", res.data);
             } catch (error) {
                 console.error("❌ Comment error:", error.response?.data || error.message);
