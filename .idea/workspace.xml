@@ -5,16 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ceb7652-a917-4404-bbad-9b6238ed79e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/editPhoto.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/UserDetail/EditUser.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/photoController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/photoController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/uploadController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/uploadController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/images/5356627f-507a-4dc2-9d63-bca5d65264ed.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/images/95198b45-d598-48de-be24-72cf72cbc31a.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/photoRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/photoRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/uploadRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/uploadRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/userController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/userRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/userRoute.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Context/UseContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Context/UseContext.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LoginRegister/LoginForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LoginRegister/LoginForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LoginRegister/RegisterForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LoginRegister/RegisterForm.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/TopBar/UploadPhoto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TopBar/UploadPhoto.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/TopBar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TopBar/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserDetail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserDetail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserList/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserList/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPhotos/addComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/addComment.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPhotos/deletePhoto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/deletePhoto.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPhotos/editPhoto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/editPhoto.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPhotos/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/lib/fetchModelData.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/lib/fetchModelData.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +115,7 @@
       <workItem from="1749094676562" duration="19290000" />
       <workItem from="1749123447807" duration="14743000" />
       <workItem from="1749169226652" duration="22177000" />
-      <workItem from="1749216248264" duration="1686000" />
+      <workItem from="1749216248264" duration="7038000" />
     </task>
     <servers />
   </component>

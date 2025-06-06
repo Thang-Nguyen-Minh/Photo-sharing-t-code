@@ -11,7 +11,7 @@ import LoginRegister from "./components/LoginRegister/LoginRegister";
 import UploadPhoto from "./components/TopBar/UploadPhoto";
 import { UserContext } from "./components/Context/UseContext";
 import EditPhoto from "./components/UserPhotos/editPhoto";
-
+import EditUserInfo from "./components/UserDetail/EditUser";
 const AppContent = () => {
     const { user, isLoading } = useContext(UserContext);
     const location = useLocation();
@@ -65,6 +65,10 @@ const AppContent = () => {
                             path="/edit/:id"
                             element={user ? <EditPhoto  /> :
                                 <Navigate to="/login" state={{ from: location.pathname }} />}
+                        />
+                        <Route
+                            path="/users/:userId/edit"
+                            element={user ? <EditUserInfo /> : <Navigate to="/login" />}
                         />
                         <Route path="*" element={<Navigate to={user ? `/users/${user._id}` : "/login"} />} />
                     </Routes>

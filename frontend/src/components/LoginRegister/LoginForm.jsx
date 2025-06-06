@@ -13,7 +13,7 @@ export default function LoginForm() {
         e.preventDefault();
         setError(""); // reset lỗi trước khi gửi
         try {
-            const res = await axios.post("http://localhost:8080/admin/login", form);
+            const res = await axios.post("https://8zns8f-8080.csb.app/admin/login", form);
             localStorage.setItem("accessToken", res.data.token);    // ✅ lưu token
             setUser(res.data.user);                                 // ✅ set user vào context
             navigate(`/users/${res.data.user._id}`);                // ✅ chuyển route

@@ -13,7 +13,7 @@ function DeletePhoto({photo,currentUserId,onDelete}) {
         try{
             const token = localStorage.getItem("accessToken");
             //Xóa đường dẫn photo khi đã đăng nhập
-            await axios.delete(`http://localhost:8080/photo/${photo._id}`, {
+            await axios.delete(`https://8zns8f-8080.csb.app/photo/${photo._id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const {getUserList,getUserById} =  require("../controllers/userController");
+const {getUserList,getUserById,updateUser} =  require("../controllers/userController");
 const verifyToken=require("../middlewares/auth");
 router.get('/me', verifyToken, async (req, res) => {
     try {
@@ -14,5 +14,5 @@ router.get('/me', verifyToken, async (req, res) => {
 });
 router.get('/list',verifyToken,getUserList);
 router.get('/:id',verifyToken,getUserById);
-
+router.put("/:id", verifyToken, updateUser);
 module.exports=router;

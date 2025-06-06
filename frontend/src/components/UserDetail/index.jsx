@@ -16,7 +16,7 @@ function UserDetail() {
                 return;
             }
             try {
-                const res = await axios.get(`http://localhost:8080/user/${userId}`,{
+                const res = await axios.get(`https://8zns8f-8080.csb.app/user/${userId}`,{
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -63,6 +63,11 @@ function UserDetail() {
                     <Link to={`/photos/${user._id}`}>
                         <Button variant="contained">PHOTOS</Button>
                     </Link>
+
+                    <Link to={`/users/${user._id}/edit`}>
+                        <Button variant="outlined" sx={{ ml: 2 }}>Edit Info</Button>
+                    </Link>
+
                 </CardContent>
             </Card>
         </div>

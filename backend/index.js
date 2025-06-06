@@ -22,7 +22,7 @@ app.use(cors({
 
 app.use(express.json());
 
-// Static file serving - ĐẢM BẢO truy cập ảnh qua http://localhost:8080/images/filename.jpg
+// Static file serving - ĐẢM BẢO truy cập ảnh qua https://8zns8f-8080.csb.app/images/filename.jpg
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 
