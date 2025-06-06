@@ -6,33 +6,45 @@ export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [isLoading, setIsLoading] = useState(true); // 🆕
 
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
-        if (!token) return;
+        if (!token) {
+            setIsLoading(false); // 🆕 Không có token => xong luôn
+            return;
+        }
 
         try {
             const decoded = jwtDecode(token);
-            const userId = decoded.id; // ✅ Sửa: backend dùng "id", không phải "userId"
-            if (!userId) return;
+            const userId = decoded.id;
+            if (!userId) {
+                setIsLoading(false); // 🆕 Token lỗi
+                return;
+            }
 
             axios
                 .get(`http://localhost:8080/user/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 })
-                .then((res) => setUser(res.data))
+                .then((res) => {
+                    setUser(res.data);
+                    setIsLoading(false); // 🆕 Thành công
+                })
                 .catch((err) => {
                     console.error("❌ Fetch user failed:", err);
                     setUser(null);
+                    setIsLoading(false); // 🆕 Lỗi
                 });
         } catch (err) {
             console.error("❌ Invalid token:", err);
             setUser(null);
+            setIsLoading(false); // 🆕 Token decode lỗi
         }
     }, []);
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ user, setUser, isLoading }}>
             {children}
         </UserContext.Provider>
     );

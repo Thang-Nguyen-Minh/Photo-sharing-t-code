@@ -6,7 +6,7 @@ const getPhotoById = async (req, res) => {
     const photos=await Photo.find({user_id:req.params.id}).lean().exec();
     for (const photo of photos){
         for (const comment of photo.comments){
-            const user=await User.findById(comment.user_id,).exec();
+            const user=await User.findById(comment.user_id).exec();
             comment.user=user;
         }
     }
@@ -65,7 +65,7 @@ const deletePhoto = async (req, res) => {
             if(err) console.log("Could not delete photo",err.message);
         });
 
-        //Xóa document trong MongDB : th ì phải là thằng Photo vì nó lấy dữ liệu từ model, má code lại thôi cx sai
+        //Xóa document trong MongDB : thì phải là thằng Photo vì nó lấy dữ liệu từ model, má code lại thôi cx sai
         await Photo.findByIdAndDelete(photoId);
         return res.status(200).json({message:"Successfully deleted photo"});
     }
@@ -74,5 +74,6 @@ const deletePhoto = async (req, res) => {
         return res.status(500).json({ error: "Server error" });
     }
 };
+
 
 module.exports={getPhotoById,getComment,deletePhoto};

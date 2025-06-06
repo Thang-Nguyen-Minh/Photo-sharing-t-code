@@ -12,9 +12,9 @@ import UploadPhoto from "./components/TopBar/UploadPhoto";
 import { UserContext } from "./components/Context/UseContext";
 
 const AppContent = () => {
-    const { user } = useContext(UserContext);
+    const { user, isLoading } = useContext(UserContext);
     const location = useLocation();
-
+    if (isLoading) return null;
     return (
         <Grid container spacing={2}>
             <Grid item xs={12}>
