@@ -10,6 +10,7 @@ import UserPhotos from "./components/UserPhotos";
 import LoginRegister from "./components/LoginRegister/LoginRegister";
 import UploadPhoto from "./components/TopBar/UploadPhoto";
 import { UserContext } from "./components/Context/UseContext";
+import EditPhoto from "./components/UserPhotos/editPhoto";
 
 const AppContent = () => {
     const { user, isLoading } = useContext(UserContext);
@@ -20,9 +21,7 @@ const AppContent = () => {
             <Grid item xs={12}>
                 <TopBar />
             </Grid>
-
             <div className="main-topbar-buffer" />
-
             {user && (
                 <Grid item sm={3}>
                     <Paper className="main-grid-item">
@@ -44,19 +43,28 @@ const AppContent = () => {
                         />
                         <Route
                             path="/users/:userId"
-                            element={user ? <UserDetail /> : <Navigate to="/login" state={{ from: location.pathname }} />}
+                            element={user ? <UserDetail /> :
+                                <Navigate to="/login" state={{ from: location.pathname }} />}
                         />
                         <Route
                             path="/photos/:userId"
-                            element={user ? <UserPhotos /> : <Navigate to="/login" state={{ from: location.pathname }} />}
+                            element={user ? <UserPhotos /> :
+                                <Navigate to="/login" state={{ from: location.pathname }} />}
                         />
                         <Route
                             path="/users"
-                            element={user ? <UserList /> : <Navigate to="/login" state={{ from: location.pathname }} />}
+                            element={user ? <UserList /> :
+                                <Navigate to="/login" state={{ from: location.pathname }} />}
                         />
                         <Route
                             path="/upload"
-                            element={user ? <UploadPhoto userId={user._id} /> : <Navigate to="/login" state={{ from: location.pathname }} />}
+                            element={user ? <UploadPhoto userId={user._id} /> :
+                                <Navigate to="/login" state={{ from: location.pathname }} />}
+                        />
+                        <Route
+                            path="/edit/:id"
+                            element={user ? <EditPhoto  /> :
+                                <Navigate to="/login" state={{ from: location.pathname }} />}
                         />
                         <Route path="*" element={<Navigate to={user ? `/users/${user._id}` : "/login"} />} />
                     </Routes>

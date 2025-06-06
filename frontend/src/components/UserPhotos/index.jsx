@@ -6,6 +6,7 @@ import AddCommentBox from "./addComment";
 import DeletePhoto from "./deletePhoto";
 import { useContext } from "react";
 import { UserContext } from "../Context/UseContext";
+import EditPhoto from "./editPhoto";
 
 function UserPhotos() {
     const { userId } = useParams();
@@ -76,14 +77,24 @@ function UserPhotos() {
                     ))}
 
                     {user && (
-                        //Truyền 3 tham số vào đúng trong delete photo
-                        //Xóa dùng filter giữ lại tất cả các ảnh có id khác id đã xóa
-                        //VD : setPhotos(1,2,3) => setPhotos(1,3)
+                        <>
                         <DeletePhoto
+                            //Truyền 3 tham số vào đúng trong delete photo
+                            //Xóa dùng filter giữ lại tất cả các ảnh có id khác id đã xóa
+                            //VD : setPhotos(1,2,3) => setPhotos(1,3)
                             photo={photo}
                             currentUserId={user._id}
                             onDelete={(id) => setPhotos(prev => prev.filter(photo => photo._id !== id))}
                         />
+                        <Button
+                            variant="outlined"
+                            color="info"
+                            sx={{ marginTop: 1, marginLeft: 1 }}
+                            onClick={() => navigate(`/edit/${photo._id}`)}
+                        >
+                            Edit Photo
+                        </Button>
+                        </>
                     )}
                     </CardContent>
                 </Card>

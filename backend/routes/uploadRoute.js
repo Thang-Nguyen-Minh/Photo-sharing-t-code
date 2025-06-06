@@ -1,6 +1,6 @@
 const express=require('express');
 const router=express.Router();
-const {PhotoUpload} =  require("../controllers/uploadController");
+const {PhotoUpload,editPhoto} =  require("../controllers/uploadController");
 const multer = require("multer");
 const path = require("path");
 const verifyToken=require("../middlewares/auth");
@@ -18,5 +18,7 @@ const storage=multer.diskStorage({
 
 const upload = multer({ storage });
 router.post("/new", verifyToken, upload.single("image"), PhotoUpload);
+//Replace ảnh là phương thức put
+router.put('/edit/:id',verifyToken,upload.single("image"),editPhoto);
 
 module.exports=router;
