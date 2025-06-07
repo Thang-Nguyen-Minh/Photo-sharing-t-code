@@ -75,6 +75,24 @@ const deletePhoto = async (req, res) => {
     }
 };
 
-
+const deleteComment = async (req, res) => {
+    const {photo_id,comment_id} = req.params;
+    const userId=req.user.id;
+    try{
+        const photo= await Photo.findById(photo_id);
+        if (!photo) return res.status(404).json({error:"Could not find photo"});
+        const comment=await photo.comments.id(comment_id);
+        if (!comment) return res.status(404).json({error:"Could not find comment"});
+        if (comment.user_id.toString() !== userId){
+            return res.status(403).json({error:"Unauthorized"});
+        }
+        comment.remove();
+        await photo.save();
+        return res.status(200).json({message : "Successfully deleted comment"})
+    }
+    catch(err){
+        console.log("error deleting photo:", err);
+    }
+}
 
 module.exports={getPhotoById,getComment,deletePhoto};

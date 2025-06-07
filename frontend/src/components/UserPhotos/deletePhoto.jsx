@@ -13,7 +13,7 @@ function DeletePhoto({photo,currentUserId,onDelete}) {
         try{
             const token = localStorage.getItem("accessToken");
             //Xóa đường dẫn photo khi đã đăng nhập
-            await axios.delete(`https://8zns8f-8080.csb.app/photo/${photo._id}`, {
+            await axios.delete(`http://localhost:8080/photo/${photo._id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -29,6 +29,7 @@ function DeletePhoto({photo,currentUserId,onDelete}) {
             console.log("Delete Failed", error.response?.data || error.message);
         }
     }
+
     //Chỉ render nếu đúng chủ sở hữu vl chỗ quan trong nhất đéo code
     if (photo.user_id!==currentUserId) return null;
     return(
@@ -42,4 +43,5 @@ function DeletePhoto({photo,currentUserId,onDelete}) {
         </Button>
     )
 }
+
 export default DeletePhoto;

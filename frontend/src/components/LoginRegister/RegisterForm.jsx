@@ -15,7 +15,7 @@ export default function RegisterForm() {
             return setError("Passwords do not match");
         }
         try {
-            await axios.post("https://8zns8f-8080.csb.app/admin/signUp", form);
+            await axios.post("http://localhost:8080/admin/signUp", form);
             setSuccess("Account created successfully!");
             setError("");
         } catch (err) {

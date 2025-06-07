@@ -15,7 +15,7 @@ function UploadPhoto({ userId }) {
         formData.append("image", image);
 
         try {
-            await axios.post("https://8zns8f-8080.csb.app/photos/new", formData, {
+            await axios.post("http://localhost:8080/photos/new", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

@@ -23,7 +23,7 @@ function UserPhotos() {
                 return;
             }
             try {
-                const res = await axios.get(`https://8zns8f-8080.csb.app/photo/photosOfUser/${userId}`, {
+                const res = await axios.get(`http://localhost:8080/photo/photosOfUser/${userId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -54,7 +54,7 @@ function UserPhotos() {
                 <Card key={photo._id} style={{ marginBottom: 20, padding: 10 }}>
                     <img
                         //src là đúng luôn cả localhost của backend thì nó mới nhận ảnh
-                        src={`https://8zns8f-8080.csb.app/images/${photo.file_name}`}
+                        src={`http://localhost:8080/images/${photo.file_name}`}
                         alt={photo.file_name}
                         style={{ maxWidth: "100%", height: "450px" }}
                     />

@@ -12,7 +12,9 @@ router.get('/me', verifyToken, async (req, res) => {
         res.status(500).json({ error: "Internal server error" });
     }
 });
+
 router.get('/list',verifyToken,getUserList);
 router.get('/:id',verifyToken,getUserById);
 router.put("/:id", verifyToken, updateUser);
+
 module.exports=router;

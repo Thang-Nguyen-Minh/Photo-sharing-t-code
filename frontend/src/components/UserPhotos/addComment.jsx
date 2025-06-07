@@ -11,7 +11,7 @@ function AddCommentBox(props) {
             try {
                 const token = localStorage.getItem("accessToken");
                 const res = await axios.post(
-                    `https://8zns8f-8080.csb.app/photo/commentsOfPhoto/${props.photoId}`,
+                    `http://localhost:8080/photo/commentsOfPhoto/${props.photoId}`,
                     { comment: comment },
                     {
                         headers: {

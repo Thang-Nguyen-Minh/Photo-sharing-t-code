@@ -18,7 +18,7 @@ function EditPhoto() {
 
         try{
             const token = localStorage.getItem("accessToken");
-            await axios.put(`https://8zns8f-8080.csb.app/photos/edit/${photoId}`, formData, {
+            await axios.put(`http://localhost:8080/photos/edit/${photoId}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`

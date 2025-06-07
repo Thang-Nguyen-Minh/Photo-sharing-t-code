@@ -16,7 +16,7 @@ function UserDetail() {
                 return;
             }
             try {
-                const res = await axios.get(`https://8zns8f-8080.csb.app/user/${userId}`,{
+                const res = await axios.get(`http://localhost:8080/user/${userId}`,{
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

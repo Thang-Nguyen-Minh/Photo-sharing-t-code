@@ -23,7 +23,7 @@ function EditUserInfo() {
         e.preventDefault();
         try {
             const token = localStorage.getItem("accessToken");
-            const res = await axios.put(`https://8zns8f-8080.csb.app/user/${user._id}`, formData, {
+            const res = await axios.put(`http://localhost:8080/user/${user._id}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

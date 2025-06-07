@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
             }
 
             axios
-                .get(`https://8zns8f-8080.csb.app/user/${userId}`, {
+                .get(`http://localhost:8080/user/${userId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 })
                 .then((res) => {

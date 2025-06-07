@@ -25,7 +25,7 @@ function TopBar() {
         if (!token) return;
 
         axios
-            .get(`https://8zns8f-8080.csb.app/user/${userId}`, {
+            .get(`http://localhost:8080/user/${userId}`, {
                 headers: { Authorization: `Bearer ${token}` },
             })
             .then((res) => {
@@ -53,13 +53,13 @@ function TopBar() {
                             <Typography variant="body1" sx={{ marginRight: 2 }}>
                                 Hi {user.first_name}
                             </Typography>
-                            <Button color="inherit" onClick={handleLogout}>Logout</Button>
+                            <Button color="error" variant="contained" onClick={handleLogout}>Logout</Button>
                         </>
                     ) : (
                         <Button color="inherit" onClick={() => navigate("/login")}>Please Login</Button>
                     )}
                     {user && (
-                        <Button color="inherit" onClick={() => navigate(`/upload`)}>
+                        <Button color="success" variant="contained" onClick={() => navigate(`/upload`)}>
                             Add Photo
                         </Button>
                     )}
@@ -73,3 +73,39 @@ function TopBar() {
 }
 
 export default TopBar;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

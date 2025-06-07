@@ -15,7 +15,7 @@ function UserList() {
                 return;
             }
             try {
-                const res = await axios.get("https://8zns8f-8080.csb.app/user/list", {
+                const res = await axios.get("http://localhost:8080/user/list", {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
