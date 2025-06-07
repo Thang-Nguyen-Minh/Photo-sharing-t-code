@@ -8,5 +8,5 @@ router.post('/commentsOfPhoto/:photo_id',verifyToken,getComment);
 //Thêm đường dẫn với phương thức delete
 router.delete('/:id',verifyToken,deletePhoto);
 router.delete('/commentsOfPhoto/:photo_id/:comment_id',verifyToken,deleteComment);
-router.put('/edit/commentsOfPhoto/:photo_id/:comment_id',verifyToken,editComment);
+router.put('/commentsOfPhoto/:photo_id/:comment_id',verifyToken,editComment);
 module.exports=router;

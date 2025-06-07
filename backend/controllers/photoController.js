@@ -96,23 +96,32 @@ const deleteComment = async (req, res) => {
     }
 }
 
-const editComment=async (req, res) => {
-    const {photo_id,comment_id} = req.params;
-    const {newComment} = req.body;
-    const userId=req.user.id;
+const editComment = async (req, res) => {
+    const { photo_id, comment_id } = req.params;
+    const { comment: newContent } = req.body;
+    const userId = req.user.id;
 
-    try{
-        const photo=await Photo.findById(photo_id);
-        if (!photo) return res.status(404).json({error:"Could not find photo"});
-        const comment=photo.comments.id(comment_id);
-        if (!comment) return res.status(404).json({error:"Could not find comment"});
-        comment.comment=newComment;
+    try {
+        const photo = await Photo.findById(photo_id);
+        if (!photo) return res.status(404).json({ error: "Photo not found" });
+
+        const comment = photo.comments.id(comment_id);
+        if (!comment) return res.status(404).json({ error: "Comment not found" });
+
+        if (comment.user_id.toString() !== userId) {
+            return res.status(403).json({ error: "Unauthorized" });
+        }
+
+        comment.comment = newContent;
+        comment.date_time = new Date();
+
         await photo.save();
-        return res.status(200).json({message:"Successfully edited comment"});
+
+        return res.status(200).json({ message: "Comment updated successfully", comment });
+    } catch (err) {
+        console.error("❌ Error updating comment:", err);
+        return res.status(500).json({ error: "Server error while editing comment" });
     }
-    catch(err){
-        console.error(err);
-        res.status(500).json({ message: "Server error" });
-    }
-}
+};
+
 module.exports={getPhotoById,getComment,deletePhoto,deleteComment,editComment};

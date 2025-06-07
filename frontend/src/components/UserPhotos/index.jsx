@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { UserContext } from "../Context/UseContext";
 import EditPhoto from "./editPhoto";
 import DeleteComment from "./deleteComment";
+import EditComment from "./EditComment";
 function UserPhotos() {
     const { userId } = useParams();
     const [photos, setPhotos] = useState([]);
@@ -91,6 +92,25 @@ function UserPhotos() {
 
                                 />
                             )}
+                            <EditComment
+                                comment={comment}
+                                photoId={photo._id}
+                                userId={user._id}
+                                onUpdate={(updatedComment) => {
+                                    setPhotos((prev) =>
+                                        prev.map((p) =>
+                                            p._id === photo._id
+                                                ? {
+                                                    ...p,
+                                                    comments: p.comments.map((c) =>
+                                                        c._id === updatedComment._id ? updatedComment : c
+                                                    ),
+                                                }
+                                                : p
+                                        )
+                                    );
+                                }}
+                            />
                         </div>
                     ))}
 
