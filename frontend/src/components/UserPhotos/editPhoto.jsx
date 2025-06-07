@@ -1,15 +1,16 @@
 import React,{useState,useContext} from "react"
 import axios from "axios"
 import {Button} from "@mui/material"
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {UserContext} from "../Context/UseContext";
 
 function EditPhoto() {
     const [image, setImage] = useState(null);
     const navigate = useNavigate();
-    const { id:photoId } = useParams();
+    const { id } = useParams();
     const {user} = useContext(UserContext);
     console.log(user._id)
+
     const handleEdit = async (e) => {
         e.preventDefault();
         if (!image) return;
@@ -18,7 +19,7 @@ function EditPhoto() {
 
         try{
             const token = localStorage.getItem("accessToken");
-            await axios.put(`http://localhost:8080/photos/edit/${photoId}`, formData, {
+            await axios.put(`http://localhost:8080/photos/edit/${id}`, formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                     Authorization: `Bearer ${token}`
@@ -31,6 +32,7 @@ function EditPhoto() {
             console.log("Edit error: ", err.response?.data || err.message);
         }
     }
+
     return(
         <form onSubmit={handleEdit}>
             <h3>Edit Photo</h3>
@@ -46,4 +48,5 @@ function EditPhoto() {
         </form>
     )
 }
+
 export default EditPhoto;

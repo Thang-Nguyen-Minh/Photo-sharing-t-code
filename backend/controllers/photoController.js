@@ -81,18 +81,19 @@ const deleteComment = async (req, res) => {
     try{
         const photo= await Photo.findById(photo_id);
         if (!photo) return res.status(404).json({error:"Could not find photo"});
-        const comment=await photo.comments.id(comment_id);
+        const comment=photo.comments.id(comment_id);
         if (!comment) return res.status(404).json({error:"Could not find comment"});
         if (comment.user_id.toString() !== userId){
             return res.status(403).json({error:"Unauthorized"});
         }
-        comment.remove();
+        photo.comments.pull(comment_id);
         await photo.save();
         return res.status(200).json({message : "Successfully deleted comment"})
     }
     catch(err){
-        console.log("error deleting photo:", err);
+        console.log("❌ Error deleting comment:", err);
+        return res.status(500).json({ error: "Server error while deleting comment" });
     }
 }
 
-module.exports={getPhotoById,getComment,deletePhoto};
+module.exports={getPhotoById,getComment,deletePhoto,deleteComment};

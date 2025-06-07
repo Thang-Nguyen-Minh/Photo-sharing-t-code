@@ -7,7 +7,7 @@ import DeletePhoto from "./deletePhoto";
 import { useContext } from "react";
 import { UserContext } from "../Context/UseContext";
 import EditPhoto from "./editPhoto";
-
+import DeleteComment from "./deleteComment";
 function UserPhotos() {
     const { userId } = useParams();
     const [photos, setPhotos] = useState([]);
@@ -73,6 +73,24 @@ function UserPhotos() {
                                 </Link>
                                 : {comment.comment}
                             </Typography>
+                            {user && (
+                                <DeleteComment
+                                    photo={photo}
+                                    //Xóa tất cả object comment
+                                    comment={comment}
+                                    userId={user._id}
+                                    onDelete={(id) => {
+                                        setPhotos(prev =>
+                                            prev.map(p =>
+                                                p._id === photo._id
+                                                    ? { ...p, comments: p.comments.filter(c => c._id !== id) }
+                                                    : p
+                                            )
+                                        );
+                                    }}
+
+                                />
+                            )}
                         </div>
                     ))}
 
