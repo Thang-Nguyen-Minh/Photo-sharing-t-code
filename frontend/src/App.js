@@ -2,9 +2,9 @@ import './App.css';
 import React, { useContext } from "react";
 import { Grid, Paper } from "@mui/material";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
-
 import TopBar from "./components/TopBar";
 import UserDetail from "./components/UserDetail";
+import UserFeed from "./components/UserDetail/UserFeed";
 import UserList from "./components/UserList";
 import UserPhotos from "./components/UserPhotos";
 import LoginRegister from "./components/LoginRegister/LoginRegister";
@@ -12,6 +12,7 @@ import UploadPhoto from "./components/TopBar/UploadPhoto";
 import { UserContext } from "./components/Context/UseContext";
 import EditPhoto from "./components/UserPhotos/editPhoto";
 import EditUserInfo from "./components/UserDetail/EditUser";
+
 const AppContent = () => {
     const { user, isLoading } = useContext(UserContext);
     const location = useLocation();
@@ -70,6 +71,7 @@ const AppContent = () => {
                             path="/users/:userId/edit"
                             element={user ? <EditUserInfo /> : <Navigate to="/login" />}
                         />
+                        <Route path="/feed" element={<UserFeed />} />
                         <Route path="*" element={<Navigate to={user ? `/users/${user._id}` : "/login"} />} />
                     </Routes>
                 </Paper>

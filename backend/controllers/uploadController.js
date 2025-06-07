@@ -53,4 +53,5 @@ const editPhoto = async (req, res) => {
         res.status(500).json({ error: "Server error" });
     }
 }
+
 module.exports = {PhotoUpload,editPhoto}

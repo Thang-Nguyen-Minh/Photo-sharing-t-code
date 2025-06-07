@@ -18,7 +18,8 @@ function DeleteComment(props) {
             console.log("✅ API responded:", res.data); // Log 3
             alert("Successfully deleted!");
             if (onDelete) onDelete(comment._id);
-        }catch(err){
+        }
+        catch(err){
             console.log("❌ Error in delete request:", err.response?.data || err.message);
         }
     }
@@ -32,4 +33,5 @@ function DeleteComment(props) {
         >DELETE COMMENT</Button>
     )
 }
+
 export default DeleteComment;

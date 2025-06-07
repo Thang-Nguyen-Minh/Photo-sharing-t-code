@@ -5,13 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5ceb7652-a917-4404-bbad-9b6238ed79e4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/src/components/UserDetail/UserFeed.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/controllers/photoController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/photoController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/images/3e0b15b3-3258-48ab-8809-3e48e2dd478a.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/routes/photoRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/photoRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/controllers/uploadController.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/controllers/uploadController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/images/0f8c74bd-3494-46ba-aed4-f89427dfc604.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/TopBar/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/TopBar/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserDetail/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserDetail/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPhotos/addComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/addComment.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPhotos/deleteComment.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/deleteComment.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPhotos/editPhoto.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/editPhoto.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/UserPhotos/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/UserPhotos/index.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +38,7 @@
     <setting file="file://$PROJECT_DIR$/backend/index.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/backend/routes/photoRoute.js" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/frontend/src/components/TopBar/index.jsx" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/frontend/src/components/UserDetail/UserFeed.jsx" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/frontend/src/components/UserDetail/index.jsx" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/frontend/src/components/UserList/index.jsx" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/frontend/src/components/UserPhotos/deleteComment.jsx" root0="SKIP_INSPECTION" />
@@ -106,7 +109,8 @@
       <workItem from="1749123447807" duration="14743000" />
       <workItem from="1749169226652" duration="22177000" />
       <workItem from="1749216248264" duration="10026000" />
-      <workItem from="1749259201887" duration="20521000" />
+      <workItem from="1749259201887" duration="21463000" />
+      <workItem from="1749289499032" duration="2515000" />
     </task>
     <servers />
   </component>

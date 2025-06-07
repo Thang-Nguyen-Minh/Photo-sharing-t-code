@@ -63,6 +63,9 @@ function TopBar() {
                             Add Photo
                         </Button>
                     )}
+                    <Button variant="contained" onClick={() => navigate("/feed")}>
+                        View User Feed
+                    </Button>
                 </div>
                 <div className="topbar-right">
                     <Typography variant="h5">{contextText}</Typography>

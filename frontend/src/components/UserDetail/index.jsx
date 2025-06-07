@@ -3,12 +3,13 @@ import { Typography, Card, CardContent, Button } from "@mui/material";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 
-function UserDetail() {
+function UserDetail({user : propUser}) {
     const { userId } = useParams();
-    const [user, setUser] = useState(null); // ✅ sửa từ [] -> null
+    const [user, setUser] = useState(propUser|| null); // ✅ sửa từ [] -> null
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     useEffect(() => {
+        if (propUser) return;
         const fetchUser = async () => {
             const token = localStorage.getItem("accessToken");
             if (!token) {
@@ -32,7 +33,7 @@ function UserDetail() {
             }
         };
         fetchUser();
-    }, [userId]);
+    }, [userId,propUser]);
 
     if (error) {
         return <Typography color="error">{error}</Typography>;
